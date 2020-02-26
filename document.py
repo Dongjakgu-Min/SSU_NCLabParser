@@ -1,20 +1,13 @@
 from bs4 import BeautifulSoup
-from urllib.parse import parse_qs, urlparse
-
 import requests
 
 
 class Document:
     def __init__(self, url):
-        session = requests.Session()
-        item = session.get(url)
-
         elem = requests.get(url)
         elem.encoding = None
 
         self.soup = BeautifulSoup(elem.text, 'html.parser')
-        # self.url_args = parse_qs(urlparse(url))
-
         self.attach = list()
         self.comment = list()
         self.content = dict()
